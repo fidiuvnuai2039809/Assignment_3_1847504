@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Image Hosting Service</title>
+  <style>
+    body {
+      background-color: lightblue;
+      font-family: 'Courier New', monospace;
+    }
+
+    img {
+      border-style: dotted;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Image Hosting Service</h1>
+  <br />
+  <h2>hosted images:</h2>
+
+  <label for="search">Search: </label>
+  <input type="text">
+  <br>
+  <br>
+  <label for="sortBy">Sort By:</label>
+  <select id="sortBy">
+    <option value="number-ascending">number-ascending</option>
+    <option value="number-descending">number-descending</option>
+  </select>
+
+  <ol id="list">
+    <li>
+      <img src="./images/nature 1.jpg" alt="" id="nature 1" class="images" width="300" height="200" />
+    </li>
+    <li>
+      <img src="./images/nature 2.jpg" alt="" id="nature 2" class="images" width="300" height="200" />
+    </li>
+    <li>
+      <img src="./images/sea 1.jpg" alt="" id="sea 1" class="images" width="300" height="200" />
+    </li>
+    <li>
+      <img src="./images/sea 2.jpg" alt="" id="sea 2" class="images" width="300" height="200" />
+    </li>
+    <li>
+      <img src="./images/skyscrapers 1.jpg" alt="" id="skyscrapers 1" class="images" width="300" height="200" />
+    </li>
+    <li>
+      <img src="./images/skyscrapers 2.jpg" alt="" id="skyscrapers 2" class="images" width="300" height="200" />
+    </li>
+  </ol>
+
+  <script>
+
+
+    let sortByElem = document.getElementById("sortBy");
+    sortByElem.addEventListener("change", function () {
+
+      let listElem = document.getElementById("list");
+      let listChilds = listElem.getElementsByTagName("li");
+      let tempListElem = document.createElement("ol");
+
+      let chosen = this.value;
+      if (chosen == "number-descending") {
+
+        for (let i = 0; i < listChilds.length; i++) {
+
+          let liElem = document.createElement("li");
+          let tempListChild = listChilds[(listChilds.length - 1) - i].getElementsByTagName("img")[0];
+          liElem.appendChild(tempListChild);
+          tempListElem.appendChild(liElem);
+
+        }
+
+        listElem.replaceWith(tempListElem);
+        //listElem = tempListElem;
+        //listElem.remove;
+        //listElem.appendChild(tempListElem);
+      } else {
+
+        for (let i = 0; i < listChilds.length; i++) {
+
+          let liElem = document.createElement("li");
+          let tempListChild = listChilds[i].getElementsByTagName("img")[0];
+          liElem.appendChild(tempListChild);
+          tempListElem.appendChild(liElem);
+
+        }
+
+        listElem.replaceWith(tempListElem);
+
+      }
+
+
+
+    });
+
+
+
+
+  </script>
+
+</body>
+
+</html>
